@@ -10,6 +10,7 @@ namespace ControlNew.CORE
 {
     public static class OperationManager
     {
+        //sec
         private static MainWindow _mainWindow;
         static BackgroundWorker s3;
 
