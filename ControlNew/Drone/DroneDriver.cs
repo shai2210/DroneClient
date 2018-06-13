@@ -24,6 +24,7 @@ namespace ControlNew.Drone
                 port.Open();
                 isConnected = true;
                 readingTimer.Change(-1, 0);//start lisitnig loop ReadingTimer_Tick
+               
             }
             catch (Exception e)
             {

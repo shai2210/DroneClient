@@ -33,7 +33,7 @@ namespace ControlNew
     {
      //   private static readonly HttpClient client = new HttpClient();
 
-        //private SerialPort port;
+        private SerialPort port;
         bool armBtnChecked = false;
         bool isConnected = false;
         BackgroundWorker s3;
@@ -123,21 +123,21 @@ namespace ControlNew
 
         }
 
-        //private void connectToArduino()
-        //{
+        private void connectToArduino()
+        {
 
-        //    try
-        //    {
-        //    //    string selectedPort = comboBox1.SelectedItem.ToString();
-        //      //  DroneHelper.ConnectToDrone(selectedPort);
-        //        //port = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-        //        //port.Open();
-        //    }
-        //    catch (Exception e)
-        //    {
+            try
+            {
+                string selectedPort = comboBox1.SelectedItem.ToString();
+               // DroneHelper.ConnectToDrone(selectedPort);
+                port = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
+                port.Open();
+           }
+            catch (Exception e)
+            {
                
-        //    }
-        //}
+            }
+        }
 
         private void forBtn_Click(object sender, EventArgs e)
         {
@@ -230,8 +230,8 @@ namespace ControlNew
             if (isConnected)
             {
                 string selectedPort = comboBox1.SelectedItem.ToString();
-                DroneHelper.ConnectToDrone(selectedPort);
-
+                // DroneHelper.ConnectToDrone(selectedPort);
+                connectToArduino();
                 ConnectBtn.Content = "Disconnect";
             }
             else
@@ -248,24 +248,25 @@ namespace ControlNew
             armBtnChecked = !armBtnChecked;
             if (armBtnChecked)
             {
+                
                 armButton.Content = "DISARM Motors";
                 if (DroneHelper.IsConnected)
                 {
-                    DroneHelper.WriteCommand("#4#1900\n");
+                //    DroneHelper.WriteCommand("#4#1900\n");
                 }
                 
-                /*if (port != null && port.IsOpen)
-                    port.Write("#4#1900\n");*/
+                if (port != null && port.IsOpen)
+                    port.Write("#4#1900\n");
             }
             else
             {
                 armButton.Content = "ARM Motors";
-                if (DroneHelper.IsConnected)
-                {
-                    DroneHelper.WriteCommand("#4#1300\n");
-                }
-                //if (port != null && port.IsOpen)
-                //    port.Write("#4#1300\n");
+                //if (DroneHelper.IsConnected)
+                //{
+                //    DroneHelper.WriteCommand("#4#1300\n");
+                //}
+                if (port != null && port.IsOpen)
+                    port.Write("#4#1300\n");
             }
         }
 
