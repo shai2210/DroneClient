@@ -1,4 +1,4 @@
-﻿//this programm will put out a PPM signal
+﻿/*//this programm will put out a PPM signal
 
 //////////////////////CONFIGURATION///////////////////////////////
 #define chanel_number 8  //set the number of chanels
@@ -17,7 +17,7 @@ String channelString = "4";
 
 /*this array holds the servo values for the ppm signal
  change theese values in your code (usually servo values move between 1000 and 2000)*/
-int ppm[chanel_number];
+/*int ppm[chanel_number];
 
 void setup()
 {
@@ -123,4 +123,4 @@ void serialEvent()
 
     }
 
-}
+}*/

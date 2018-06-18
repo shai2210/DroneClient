@@ -2,6 +2,7 @@
 using System.Net;
 using System.IO;
 using System.Threading.Tasks;
+using System;
 
 namespace ControlNew.Network
 {
@@ -26,16 +27,17 @@ namespace ControlNew.Network
             }
         }
 
-        public Task<bool> SendDroneStatus(int id, double lat, double lng, string uRL)
+        public Task<bool> SendDroneStatus(int id, double lat, double lng, DateTime time, string uRL)
         {
-            //
+            
             var request = (HttpWebRequest)WebRequest.Create("http://18.207.210.26/api.php");
 
             var postData = "action=insertById";
-            postData += "&id="+id; // drone id 
-            postData += "&lat="+lat;
-            postData += "&long="+lng;
-            postData += "&image="+uRL;// is url to image that saved on s3 bucket
+            postData += "&id=" + id; // drone id 
+            postData += "&lat=" + lat;
+            postData += "&long=" + lng;
+            postData += "&time=" + time;
+            postData += "&image=" + uRL;// is url to image that saved on s3 bucket
             var data = Encoding.ASCII.GetBytes(postData);
 
             request.Method = "POST";
