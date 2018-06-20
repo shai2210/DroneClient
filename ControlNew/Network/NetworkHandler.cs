@@ -15,11 +15,18 @@ namespace ControlNew.Network
             DateTime time = new DateTime(1985,10,22,10,22,22);
             for (int i = 0; i < 5; i++)
             {
-                
-                bool resu = await Proxyhandler.instance.SendDroneStatus(1, 15.475412 + i*0.00329, -90.990448 - i * 0.00329, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-                bool res = await Proxyhandler.instance.SendDroneStatus(2, 15.475412 - i * 0.00329, -90.990448+ i * 0.00329, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-                bool re = await Proxyhandler.instance.SendDroneStatus(3, 15.475412 + i * 0.00329, -90.990448+ i * 0.00329, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-                System.Threading.Thread.Sleep(2000);
+                if (i %2== 0) {
+                    bool resu = await Proxyhandler.instance.SendDroneStatus(1, 15.475412 + i * 0.00329, -90.990448 - i * 0.00329, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
+                    bool res = await Proxyhandler.instance.SendDroneStatus(2, 15.475412 - i * 0.00329, -90.990448 + i * 0.00329, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
+                    bool re = await Proxyhandler.instance.SendDroneStatus(3, 15.475412 + i * 0.00329, -90.990448 + i * 0.00329, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
+                }
+                else
+                {
+                    bool resu = await Proxyhandler.instance.SendDroneStatus(1, 15.475412 + i * 0.00329, -90.990448 - i * 0.00329, time, "");
+                    bool res = await Proxyhandler.instance.SendDroneStatus(2, 15.475412 - i * 0.00329, -90.990448 + i * 0.00329, time, "");
+                    bool re = await Proxyhandler.instance.SendDroneStatus(3, 15.475412 + i * 0.00329, -90.990448 + i * 0.00329, time, "");
+                }
+                System.Threading.Thread.Sleep(5000);
             }
             //Console.WriteLine(resu);
             //try
