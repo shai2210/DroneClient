@@ -141,12 +141,12 @@ namespace ControlNew
 
         private void forBtn_Click(object sender, EventArgs e)
         {
-            /*if (port != null && port.IsOpen)
+            if (port != null && port.IsOpen)
             {
                 port.Write("#2#1700\n");
                 Thread.Sleep(100);
                 port.Write("#2#1500\n");
-            }*/
+            }
             List<string> commandsList = new List<string>();
             commandsList.Add("#2#1700\n");
             commandsList.Add("#2#1500\n");
@@ -158,12 +158,12 @@ namespace ControlNew
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            //if (port != null && port.IsOpen)
-            //{
-            //    port.Write("#2#1300\n");
-            //    Thread.Sleep(100);
-            //    port.Write("#2#1500\n");
-            //}
+            if (port != null && port.IsOpen)
+            {
+                port.Write("#2#1300\n");
+                Thread.Sleep(100);
+                port.Write("#2#1500\n");
+            }
 
             List<string> commandsList = new List<string>();
             commandsList.Add("#2#1300\n");
@@ -176,12 +176,12 @@ namespace ControlNew
 
         private void rightBtn_Click(object sender, EventArgs e)
         {
-            //if (port != null && port.IsOpen)
-            //{
-            //    port.Write("#3#1700\n");
-            //    Thread.Sleep(100);
-            //    port.Write("#3#1500\n");
-            //}
+            if (port != null && port.IsOpen)
+            {
+                port.Write("#3#1700\n");
+                Thread.Sleep(100);
+                port.Write("#3#1500\n");
+            }
             List<string> commandsList = new List<string>();
             commandsList.Add("#3#1700\n");
             commandsList.Add("#3#1500\n");
@@ -193,12 +193,12 @@ namespace ControlNew
 
         private void leftBtn_Click(object sender, EventArgs e)
         {
-            //if (port != null && port.IsOpen)
-            //{
-            //    port.Write("#3#1300\n");
-            //    Thread.Sleep(100);
-            //    port.Write("#3#1500\n");
-            //}
+            if (port != null && port.IsOpen)
+            {
+                port.Write("#3#1300\n");
+                Thread.Sleep(100);
+                port.Write("#3#1500\n");
+            }
 
             List<string> commandsList = new List<string>();
             commandsList.Add("#3#1300\n");
@@ -212,11 +212,11 @@ namespace ControlNew
         //throutle value
         private void thrBar_Scroll(object sender, EventArgs e)
         {
-            /*if (port != null && port.IsOpen)
+            if (port != null && port.IsOpen)
             {
                 port.Write("#0#" + thrSlider.Value + "\n");
 
-            }*/
+            }
             
             if (DroneHelper.IsConnected)
             {
