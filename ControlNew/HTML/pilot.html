@@ -31,7 +31,7 @@
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             zoom:10,
-            center: new google.maps.LatLng(12.8,18.31),
+            center: new google.maps.LatLng(15.475412, -90.990448),
             mapTypeId: 'terrain'
         });
 
@@ -50,14 +50,20 @@
 
     }
 
-    function drawRoute(lat,long,time) {
+    function drawRoute(lat,long,time,url) {
 
-        var latLng = new google.maps.LatLng(lat,long);
-        var marker = new google.maps.Marker({
-            position: latLng,
-            map: map,
-            title: time
-        });
+    	var latLng = new google.maps.LatLng(lat, long);
+    	if (url != null) {
+    		var marker = new google.maps.Marker({
+    			position: latLng,
+    			map: map,
+    			img: url,
+    			title: time
+    		});
+    		marker.addListener('click', function () {
+    			window.open(this.img);
+    		});
+    	}
 
         flightCoordinates.push({ lat:lat, lng:long });
         

@@ -283,13 +283,13 @@ namespace ControlNew
         }
 
         //get lat long ant time and display it on map
-        public void myRoute(double lat , double lng ,DateTime time )
+        public void myRoute(double lat , double lng ,DateTime time,string url )
         {
             //invoke the main window thread 
             Dispatcher.Invoke(() =>
             {
                 dynamic doc = Gmaps.Document;
-                Gmaps.InvokeScript("drawRoute", new Object[] { lat, lng, time.ToString() });
+                Gmaps.InvokeScript("drawRoute", new Object[] { lat, lng, time.ToString(),url });
             });
         }
 

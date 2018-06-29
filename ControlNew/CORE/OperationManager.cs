@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ControlNew.Network;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ControlNew.CORE
 {
@@ -26,10 +27,39 @@ namespace ControlNew.CORE
             
             if(_mainWindow != null)
             {
-                //_mainWindow.myRoute(data.Lat, data.Lng, data.CurrTime);//1 - draw
+                
                 //Demo
-                _mainWindow.myRoute(13, 18, new DateTime(2011, 6, 10));
-                _mainWindow.myRoute(13,19, new DateTime(2011, 6, 10));
+                for (int i = 1; i < 9; i++)
+                {   
+                    System.Threading.Thread.Sleep(1000);
+                    DateTime curr = DateTime.Now;
+
+                    if (i % 4 == 0)
+                    {
+                        
+                        _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448 - i * 0.00029, curr, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
+
+                    }
+                    if (i % 3 == 0)
+                    {
+                    
+                       _mainWindow.myRoute(15.475412, -90.990448 - i * 0.00029, curr,null);
+
+                    }
+                    if (i % 5 == 0)
+                    {
+                     
+                        _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448, curr,null);
+
+                    }
+                    if (i % 7 == 0)
+                    {
+                        _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448 - i * 0.00029, curr, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
+
+                    }
+
+                }
+                
 
                 //_mainWindow.SetNewImage(data.ImageSrc);//2- change image
                 //Demo
