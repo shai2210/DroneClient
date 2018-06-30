@@ -15,54 +15,8 @@ namespace ControlNew.Network
         public static async void UploadImageToS3(string fileName)
         {
             //int id, double lat, double lng, string uRL
-            DateTime time = new DateTime(1985,10,22,10,22,22);
+            DateTime time = DateTime.Now;
            
-            for(int i = 1; i<9; i++ )
-            {
-                if (i % 4 == 0)
-                {
-                    bool resu = await Proxyhandler.instance.SendDroneStatus(1, 15.475412 + i * 0.00029, -90.990448 - i * 0.00029, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-        //            _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448 - i * 0.00029, new DateTime(2011, 6, 10));
-                    System.Threading.Thread.Sleep(500);
-                    bool res = await Proxyhandler.instance.SendDroneStatus(2, 15.475412 - i * 0.00029, -90.990448 + i * 0.00029, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-                    System.Threading.Thread.Sleep(500);
-                    bool re = await Proxyhandler.instance.SendDroneStatus(3, 15.475412 + i * 0.00029, -90.990448 + i * 0.00029, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-                    System.Threading.Thread.Sleep(500);
-                }
-                if (i % 3 == 0)
-                {
-                    bool resu = await Proxyhandler.instance.SendDroneStatus(1, 15.475412, -90.990448 - i * 0.00029, time, "");
-          //          _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448 - i * 0.00029, new DateTime(2011, 6, 10));
-                    System.Threading.Thread.Sleep(500);
-                    bool res = await Proxyhandler.instance.SendDroneStatus(2, 15.475412, -90.990448 + i * 0.00029, time, "");
-                    System.Threading.Thread.Sleep(500);
-                    bool re = await Proxyhandler.instance.SendDroneStatus(3, 15.475412, -90.990448 + i * 0.00029, time, "");
-                    System.Threading.Thread.Sleep(500);
-                }
-                if (i % 5 == 0)
-                {
-                    bool resu = await Proxyhandler.instance.SendDroneStatus(1, 15.475412 + i * 0.00029, -90.990448, time, "");
-            //        _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448 - i * 0.00029, new DateTime(2011, 6, 10));
-                    System.Threading.Thread.Sleep(500);
-                    bool res = await Proxyhandler.instance.SendDroneStatus(2, 15.475412 - i * 0.00029, -90.990448, time, "");
-                    System.Threading.Thread.Sleep(500);
-                    bool re = await Proxyhandler.instance.SendDroneStatus(3, 15.475412 + i * 0.00029, -90.990448, time, "");
-                    System.Threading.Thread.Sleep(500);
-                }
-                if (i % 7 == 0)
-                {
-                    bool resu = await Proxyhandler.instance.SendDroneStatus(1, 15.475412 + i * 0.00029, -90.990448 - i * 0.00029, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-              //      _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448 - i * 0.00029, new DateTime(2011, 6, 10));
-
-                    System.Threading.Thread.Sleep(500);
-                    bool res = await Proxyhandler.instance.SendDroneStatus(2, 15.475412 - i * 0.00029, -90.990448 + i * 0.00029, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-                    System.Threading.Thread.Sleep(500);
-                    bool re = await Proxyhandler.instance.SendDroneStatus(3, 15.475412 + i * 0.00029, -90.990448 + i * 0.00029, time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-                    System.Threading.Thread.Sleep(500);
-                }
-
-            }
-            //Console.WriteLine(resu);
             //try
             //{
             //    bool res = await S3Handler.instance.FileUpload(fileName);

@@ -289,6 +289,9 @@ namespace ControlNew
             //invoke the main window thread 
             Dispatcher.Invoke(() =>
             {
+                photo++;
+                CurrentImage.Source = new BitmapImage(new Uri("../images/n" + photo + ".png", UriKind.Relative));
+ 
                 dynamic doc = Gmaps.Document;
                 Gmaps.InvokeScript("drawRoute", new Object[] { lat, lng, time.ToString(),url });
             });
@@ -302,7 +305,7 @@ namespace ControlNew
           
             Dispatcher.Invoke(() =>
             {
-                CurrentImage.Source = new BitmapImage(new Uri("../images/" + photo + ".png", UriKind.Relative));
+                CurrentImage.Source = new BitmapImage(new Uri("../images/n" + photo + ".png", UriKind.Relative));
                 photo++;
             });
             //invoke the main window thread 

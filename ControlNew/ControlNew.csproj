@@ -113,6 +113,13 @@
     <Content Include="HTML\pilot.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\n7.png" />
+    <Resource Include="images\n6.png" />
+    <Resource Include="images\n1.png" />
+    <Resource Include="images\n2.png" />
+    <Resource Include="images\n3.png" />
+    <Resource Include="images\n4.png" />
+    <Resource Include="images\n5.png" />
     <Resource Include="images\3.png" />
     <Resource Include="images\4.png" />
     <Resource Include="images\5.png" />
