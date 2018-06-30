@@ -28,7 +28,9 @@ namespace ControlNew.Drone
             }
             catch (Exception e)
             {
-
+                if (e.Source != null)
+                    Console.WriteLine("arduino connect faild", e.Source);
+                throw;
             }
         }
 
@@ -54,7 +56,9 @@ namespace ControlNew.Drone
             }
             catch (Exception ex)
             {
-
+                if (ex.Source != null)
+                    Console.WriteLine("faild to write command to arduino", ex.Source);
+                throw;
             }
         }
 

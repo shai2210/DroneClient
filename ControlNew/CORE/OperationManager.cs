@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using ControlNew.Network;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -24,46 +25,29 @@ namespace ControlNew.CORE
         public static void HandleDroneData(dataFromDrone data)
         {
             //What to do when receive drone data
-            
-            if(_mainWindow != null)
+
+            if (_mainWindow != null)
             {
-                
-                //Demo
                 for (int i = 1; i < 9; i++)
-                {   
-                    System.Threading.Thread.Sleep(1000);
-                    DateTime curr = DateTime.Now;
+                {
 
-                    if (i % 4 == 0)
-                    {
-                        
-                        _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448 - i * 0.00029, curr, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-
-                    }
-                    if (i % 3 == 0)
-                    {
                     
-                       _mainWindow.myRoute(15.475412, -90.990448 - i * 0.00029, curr,null);
-
-                    }
-                    if (i % 5 == 0)
-                    {
-                     
-                        _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448, curr,null);
-
-                    }
-                    if (i % 7 == 0)
-                    {
-                        _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448 - i * 0.00029, curr, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-
-                    }
-
                 }
-                
 
-                //_mainWindow.SetNewImage(data.ImageSrc);//2- change image
-                //Demo
-                //_mainWindow.SetNewImage);
+                    //Demo 
+                    //for (int i = 1; i < 9; i++)
+                    //{
+                    //    // Application.DoEvents(); //allow windows to execute all pending tasks including your image show...
+
+                    //    System.Threading.Thread.Sleep(1000);
+                    //    _mainWindow.CurrentImage.Source = new BitmapImage(new Uri("../images/1.png", UriKind.Relative));
+                    //    //ImageViewer1.Source = new BitmapImage(new Uri(@"\myserver\folder1\Customer Data\sample.png"));
+                    //}
+
+
+                    //_mainWindow.SetNewImage(data.ImageSrc);//2- change image
+                    //Demo
+                    //_mainWindow.SetNewImage);
             }
             s3.RunWorkerAsync(); //3-upload image //4-upload data to server
 
@@ -78,7 +62,43 @@ namespace ControlNew.CORE
         //uploads data to S3 and do post
         private  static void s3_DoWork(object sender, DoWorkEventArgs e)
         {
+            for (int i = 1; i < 9; i++)
+            {
+                // Application.DoEvents(); //allow windows to execute all pending tasks including your image show...
+                _mainWindow.SetNewImage();
+                System.Threading.Thread.Sleep(1000);
+               // _mainWindow.CurrentImage.Source = new BitmapImage(new Uri("../images/1.png", UriKind.Relative));
+                //ImageViewer1.Source = new BitmapImage(new Uri(@"\myserver\folder1\Customer Data\sample.png"));
+
+                DateTime curr = DateTime.Now;
+
+                if (i % 4 == 0)
+                {
+
+                    _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448 - i * 0.00029, curr, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
+
+                }
+                if (i % 3 == 0)
+                {
+
+                    _mainWindow.myRoute(15.475412, -90.990448 - i * 0.00029, curr, null);
+
+                }
+                if (i % 5 == 0)
+                {
+
+                    _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448, curr, null);
+
+                }
+                if (i % 7 == 0)
+                {
+                    _mainWindow.myRoute(15.475412 + i * 0.00029, -90.990448 - i * 0.00029, curr, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
+
+                }
+
+            }
             NetworkHandler.UploadImageToS3("IMG_0001.jpg");
+
         }
 
         //ca be dipause

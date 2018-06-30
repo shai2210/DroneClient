@@ -15,10 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System;
-using System.IO;
 using System.Net;
-using System.Text;
 using ControlNew.Network;
 using System.ComponentModel;
 using ControlNew.Drone;
@@ -31,8 +28,8 @@ namespace ControlNew
     /// </summary>
     public partial class MainWindow : Window
     {
-     //   private static readonly HttpClient client = new HttpClient();
-
+        //   private static readonly HttpClient client = new HttpClient();
+        int photo;//for presntation
         private SerialPort port;
         bool armBtnChecked = false;
         bool isConnected = false;
@@ -135,7 +132,9 @@ namespace ControlNew
            }
             catch (Exception e)
             {
-               
+                if (e.Source != null)
+                    Console.WriteLine("arduino connect faild", e.Source);
+                throw;
             }
         }
 
@@ -280,11 +279,13 @@ namespace ControlNew
             //changeWorker.RunWorkerAsync();
             OperationManager.HandleDroneData(null);
             
+
         }
 
         //get lat long ant time and display it on map
         public void myRoute(double lat , double lng ,DateTime time,string url )
         {
+            
             //invoke the main window thread 
             Dispatcher.Invoke(() =>
             {
@@ -294,12 +295,20 @@ namespace ControlNew
         }
 
         //get image and change image at pilot screen
-        public void SetNewImage(ImageSource img)
+        //public void SetNewImage(ImageSource img)
+        public void SetNewImage()
         {
+            photo++;
+          
+            Dispatcher.Invoke(() =>
+            {
+                CurrentImage.Source = new BitmapImage(new Uri("../images/" + photo + ".png", UriKind.Relative));
+                photo++;
+            });
             //invoke the main window thread 
             Dispatcher.Invoke(() =>
             {
-                CurrentImage.Source = img;
+             //   CurrentImage.Source = img;
             });
         }
 
