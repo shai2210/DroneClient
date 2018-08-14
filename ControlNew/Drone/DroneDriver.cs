@@ -15,28 +15,29 @@ namespace ControlNew.Drone
         public static  bool isConnected = false;//is the arduino connected to me
         static string data = "";//data from arduino
 
-        //connect to arduino
-        public void Connect(string selectedPort)
-        {
-            try
-            {
-                port = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
-                port.Open();
-                isConnected = true;
-                readingTimer.Change(-1, 0);//start lisitnig loop ReadingTimer_Tick
+        ////connect to arduino
+        //public void Connect(string selectedPort)
+        //{
+        //    try
+        //    {
+        //        port = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
+        //        port.Open();
+        //        isConnected = true;
+        //        readingTimer.Change(-1, 0);//start lisitnig loop ReadingTimer_Tick
                
-            }
-            catch (Exception e)
-            {
-                if (e.Source != null)
-                    Console.WriteLine("arduino connect faild", e.Source);
-                throw;
-            }
-        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        if (e.Source != null)
+        //            Console.WriteLine("arduino connect faild", e.Source);
+        //        throw;
+        //    }
+        //}
 
         //reading data from arduino
         private static void ReadingTimer_Tick(object state)
         {
+            
             data = port.ReadExisting();
             if (!string.IsNullOrEmpty(data))
             {
@@ -47,29 +48,29 @@ namespace ControlNew.Drone
             readingTimer.Change(-1, 0);
         }
 
-        //write to arduino
-        public void WriteCommand(string command)
-        {
-            try
-            {
-                port.Write(command);
-            }
-            catch (Exception ex)
-            {
-                if (ex.Source != null)
-                    Console.WriteLine("faild to write command to arduino", ex.Source);
-                throw;
-            }
-        }
+        ////write to arduino
+        //public void WriteCommand(string command)
+        //{
+        //    try
+        //    {
+        //        port.Write(command);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (ex.Source != null)
+        //            Console.WriteLine("faild to write command to arduino", ex.Source);
+        //        throw;
+        //    }
+        //}
 
-        //cloe the connection
-        internal void Close()
-        {
-            port.Close();
-            isConnected = false;
-        }
+        ////cloe the connection
+        //internal void Close()
+        //{
+        //    port.Close();
+        //    isConnected = false;
+        //}
 
-        //reading func
-        //write func'
+        ////reading func
+        ////write func'
     }
 }

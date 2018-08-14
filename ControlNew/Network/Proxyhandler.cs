@@ -55,29 +55,5 @@ namespace ControlNew.Network
              return Task.FromResult(true); ;
         }
 
-        //add drone to drone list. send only color the number is auto inc
-        public bool insertDrone(string color)
-        {
-            var request = (HttpWebRequest)WebRequest.Create("http://18.207.210.26/api.php");
-
-            var postData = "action=insertDrone";
-            postData += "&color=" + color;
-            
-            var data = Encoding.ASCII.GetBytes(postData);
-
-            request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = data.Length;
-
-            using (var stream = request.GetRequestStream())
-            {
-                stream.Write(data, 0, data.Length);
-            }
-
-            var response = (HttpWebResponse)request.GetResponse();
-
-            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            return true;
-        }
     }
 }

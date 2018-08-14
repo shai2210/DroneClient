@@ -177,9 +177,9 @@ namespace ControlNew
         {
             if (port != null && port.IsOpen)
             {
-                port.Write("#3#1700\n");
+                port.Write("#1#1700\n");
                 Thread.Sleep(100);
-                port.Write("#3#1500\n");
+                port.Write("#1#1500\n");
             }
             List<string> commandsList = new List<string>();
             commandsList.Add("#3#1700\n");
@@ -194,9 +194,9 @@ namespace ControlNew
         {
             if (port != null && port.IsOpen)
             {
-                port.Write("#3#1300\n");
+                port.Write("#1#1300\n");
                 Thread.Sleep(100);
-                port.Write("#3#1500\n");
+                port.Write("#1#1500\n");
             }
 
             List<string> commandsList = new List<string>();
@@ -235,7 +235,7 @@ namespace ControlNew
             }
             else
             {
-                DroneHelper.Close();
+               // DroneHelper.Close();
                 //port.Close();
                 ConnectBtn.Content = "Connect";
             }
@@ -255,7 +255,7 @@ namespace ControlNew
                 }
                 
                 if (port != null && port.IsOpen)
-                    port.Write("#4#1900\n");
+                    port.Write("41900");//update all 
             }
             else
             {
@@ -265,7 +265,7 @@ namespace ControlNew
                 //    DroneHelper.WriteCommand("#4#1300\n");
                 //}
                 if (port != null && port.IsOpen)
-                    port.Write("#4#1300\n");
+                    port.Write("41300\n");
             }
         }
 
@@ -312,15 +312,6 @@ namespace ControlNew
             Dispatcher.Invoke(() =>
             {
              //   CurrentImage.Source = img;
-            });
-        }
-
-        //get rid off
-        public void UpdateDoneUpload()
-        {
-            Dispatcher.Invoke(() =>
-            {
-                uploadLbl.Content = "Uploaded";
             });
         }
     }
