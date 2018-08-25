@@ -12,15 +12,15 @@ namespace ControlNew.Network
     public class S3Handler
     {
         private static S3Handler Instance;
-        private const string bucketName = "drones-bucket";
+        private const string bucketName = "drones-bucket2";
         private  string keyName = "";//the file name on S3 
         private const string filePath = @"C:\Users\shai\Desktop\New folder\"; // ""SET REAL FILE PATH
 
         
         /////////// S3 Info
         private static readonly RegionEndpoint bucketRegion = RegionEndpoint.EUWest1;
-        private const string AccessKeyID = "AKIAJ6UX3AERZQFM5V7A";
-        private const string AccessKeyName = "urSINJkfvBB6OgMX81/r7tfz1S/thAu/+6JLZmR1";
+        private const string AccessKeyID = "AKIAJNTPDKVO4HVYG55Q";
+        private const string AccessKeyName = "aHdirNR/+a5Bn1noFPFL6ylXxmRQGepmsxnTTQib";
         private static IAmazonS3 client;
         
 

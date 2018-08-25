@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CORE\OperationManager.cs" />
+    <Compile Include="CORE\OperationManagerSIM.cs" />
     <Compile Include="Drone\dataFromDrone.cs" />
     <Compile Include="Drone\DroneDriver.cs" />
     <Compile Include="Drone\DroneHelper.cs" />

@@ -17,21 +17,21 @@ namespace ControlNew.Network
             //int id, double lat, double lng, string uRL
             DateTime time = DateTime.Now;
            
-            //try
-            //{
-            //    bool res = await S3Handler.instance.FileUpload(fileName);
-            //    if (res)
-            //    {
-            // //       DateTime time = new DateTime(1985, 10, 22);
-            //   //     bool resu = await Proxyhandler.instance.SendDroneStatus(2, 93, 23,time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
-            //     //   Console.WriteLine(resu);
-            //        //Delete photo
-            //    }
-            //}
-            //catch(Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
+           try
+           {
+               bool res = await S3Handler.instance.FileUpload(fileName);
+               if (res)
+               {
+                //  DateTime time = new DateTime(1985, 10, 22);
+                bool resu = await Proxyhandler.instance.SendDroneStatus(2, 93, 23,time, "https://s3-eu-west-1.amazonaws.com/drones-bucket/IMG_0001.jpg");
+              Console.WriteLine(resu);
+           //Delete photo
+               }
+           }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         
