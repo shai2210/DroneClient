@@ -20,6 +20,7 @@ using ControlNew.Network;
 using System.ComponentModel;
 using ControlNew.Drone;
 using ControlNew.CORE;
+using ControlNew.Data;
 
 namespace ControlNew
 {
@@ -120,13 +121,21 @@ namespace ControlNew
 
         }
 
+        private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string inData = sp.ReadExisting();
+            DroneManager.GetInstance().DataReceived(inData);
+
+
+        }
+
         private void connectToArduino()
         {
 
             try
             {
                 string selectedPort = comboBox1.SelectedItem.ToString();
-               // DroneHelper.ConnectToDrone(selectedPort);
                 port = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
                 port.Open();
            }
@@ -142,58 +151,66 @@ namespace ControlNew
         {
             if (port != null && port.IsOpen)
             {
-                port.Write("#2#1700\n");
+                Package package = new Package(2, (byte)Opcode.MOVE_REQUEST, "21700");
+                port.Write(package.ToString());
+
                 Thread.Sleep(100);
-                port.Write("#2#1500\n");
-            }
-            List<string> commandsList = new List<string>();
-            commandsList.Add("#2#1700\n");
-            commandsList.Add("#2#1500\n");
-           
+                Package package1 = new Package(2, (byte)Opcode.MOVE_REQUEST, "21500");
+                port.Write(package1.ToString());
+           //     List<Package> commandsList = new List<Package>();
+           //     commandsList.Add(package);
+           //     commandsList.Add(package1);
+            } 
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            if (port != null && port.IsOpen)
-            {
-                port.Write("#2#1300\n");
-                Thread.Sleep(100);
-                port.Write("#2#1500\n");
-            }
+            Package package = new Package(2, (byte)Opcode.MOVE_REQUEST, "21300");
+            port.Write(package.ToString());
 
-            List<string> commandsList = new List<string>();
-            commandsList.Add("#2#1300\n");
-            commandsList.Add("#2#1500\n");
-         
+            Thread.Sleep(100);
+            Package package1 = new Package(2, (byte)Opcode.MOVE_REQUEST, "21500");
+            port.Write(package1.ToString());
+            
+            //List<Package> commandsList = new List<Package>();
+            //commandsList.Add(package);
+            //commandsList.Add(package1);
         }
 
         private void rightBtn_Click(object sender, EventArgs e)
         {
             if (port != null && port.IsOpen)
             {
-                port.Write("#1#1700\n");
+                Package package = new Package(2, (byte)Opcode.MOVE_REQUEST, "11700");
+                port.Write(package.ToString());
+
                 Thread.Sleep(100);
-                port.Write("#1#1500\n");
+                Package package1 = new Package(2, (byte)Opcode.MOVE_REQUEST, "11500");
+                port.Write(package.ToString());
+                //port.Write("11700");
+                //Thread.Sleep(100);
+                //port.Write("11500");
+                //List<Package> commandsList = new List<Package>();
+                //commandsList.Add(package);
+                //commandsList.Add(package1);   
             }
-            List<string> commandsList = new List<string>();
-            commandsList.Add("#3#1700\n");
-            commandsList.Add("#3#1500\n");
-          
         }
 
         private void leftBtn_Click(object sender, EventArgs e)
         {
             if (port != null && port.IsOpen)
             {
-                port.Write("#1#1300\n");
-                Thread.Sleep(100);
-                port.Write("#1#1500\n");
-            }
+                Package package = new Package(2, (byte)Opcode.MOVE_REQUEST, "11300");
+                port.Write(package.ToString());
 
-            List<string> commandsList = new List<string>();
-            commandsList.Add("#3#1300\n");
-            commandsList.Add("#3#1500\n");
-           
+                Thread.Sleep(100);
+                Package package1 = new Package(2, (byte)Opcode.MOVE_REQUEST, "11500");
+                port.Write(package.ToString());
+              //  List<Package> commandsList = new List<Package>();
+              //  commandsList.Add(package);
+              //  commandsList.Add(package1);
+              
+            }   
         }
 
         //throutle value
@@ -201,11 +218,10 @@ namespace ControlNew
         {
             if (port != null && port.IsOpen)
             {
-                port.Write("#0#" + thrSlider.Value + "\n");
+                Package package = new Package(2, (byte)Opcode.MOVE_REQUEST, "0" + thrSlider.Value);
+                port.Write(package.ToString());
 
             }
-            
-           
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -214,7 +230,6 @@ namespace ControlNew
             if (isConnected)
             {
                 string selectedPort = comboBox1.SelectedItem.ToString();
-                // DroneHelper.ConnectToDrone(selectedPort);
                 connectToArduino();
                 ConnectBtn.Content = "Disconnect";
             }
@@ -232,22 +247,23 @@ namespace ControlNew
             armBtnChecked = !armBtnChecked;
             if (armBtnChecked)
             {
-                
                 armButton.Content = "DISARM Motors";
-               
-                
                 if (port != null && port.IsOpen)
-                    port.Write("41900");//update all 
+                {
+                    Package package = new Package(2, (byte)Opcode.MOVE_REQUEST, "41900");
+                    port.Write(package.ToString());
+                }
             }
             else
             {
                 armButton.Content = "ARM Motors";
-                //if (DroneHelper.IsConnected)
-                //{
-                //    DroneHelper.WriteCommand("#4#1300\n");
-                //}
+     
                 if (port != null && port.IsOpen)
-                    port.Write("41300\n");
+                {
+                    Package package = new Package(2, (byte)Opcode.MOVE_REQUEST, "41300");
+                    port.Write(package.ToString());
+                }
+                    
             }
         }
 
@@ -290,11 +306,7 @@ namespace ControlNew
                 CurrentImage.Source = new BitmapImage(new Uri("../images/n" + photo + ".png", UriKind.Relative));
                 photo++;
             });
-            //invoke the main window thread 
-            Dispatcher.Invoke(() =>
-            {
-             //   CurrentImage.Source = img;
-            });
+          
         }
     }
 }
