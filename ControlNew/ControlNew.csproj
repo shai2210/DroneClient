@@ -61,14 +61,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CORE\OperationManager.cs" />
-    <Compile Include="CORE\OperationManagerSIM.cs" />
+    <Compile Include="Data\Opcode.cs" />
+    <Compile Include="Data\Package.cs" />
     <Compile Include="Drone\dataFromDrone.cs" />
-    <Compile Include="Drone\DroneDriver.cs" />
-    <Compile Include="Drone\DroneHelper.cs" />
+    <Compile Include="Drone\DroneManager.cs" />
     <Compile Include="Network\NetworkHandler.cs" />
     <Compile Include="Network\Proxyhandler.cs" />
     <Compile Include="Network\S3Handler.cs" />
-    <Compile Include="Network\s3.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

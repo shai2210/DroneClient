@@ -30,7 +30,7 @@ namespace ControlNew.Network
         public Task<bool> SendDroneStatus(int id, double lat, double lng, DateTime time, string uRL)
         {
             
-            var request = (HttpWebRequest)WebRequest.Create("http://18.207.210.26/api.php");
+            var request = (HttpWebRequest)WebRequest.Create("http://18.218.63.225/api.php");
 
             var postData = "action=insertById";
             postData += "&id=" + id; // drone id 

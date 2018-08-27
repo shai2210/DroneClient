@@ -57,7 +57,7 @@ namespace ControlNew.Network
                     BucketName = bucketName,
                     Key = keyName,
                     FilePath = filePath+keyName,
-                    ContentType = "image/*"
+                    ContentType = "image/jpg"
                 };
 
                 PutObjectResponse response = client.PutObject(putRequest);

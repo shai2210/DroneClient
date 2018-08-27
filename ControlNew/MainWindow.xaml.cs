@@ -149,10 +149,7 @@ namespace ControlNew
             List<string> commandsList = new List<string>();
             commandsList.Add("#2#1700\n");
             commandsList.Add("#2#1500\n");
-            if (DroneHelper.IsConnected)
-            {
-                DroneHelper.WriteCommand(commandsList);
-            }
+           
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -167,10 +164,7 @@ namespace ControlNew
             List<string> commandsList = new List<string>();
             commandsList.Add("#2#1300\n");
             commandsList.Add("#2#1500\n");
-            if (DroneHelper.IsConnected)
-            {
-                DroneHelper.WriteCommand(commandsList);
-            }
+         
         }
 
         private void rightBtn_Click(object sender, EventArgs e)
@@ -184,10 +178,7 @@ namespace ControlNew
             List<string> commandsList = new List<string>();
             commandsList.Add("#3#1700\n");
             commandsList.Add("#3#1500\n");
-            if (DroneHelper.IsConnected)
-            {
-                DroneHelper.WriteCommand(commandsList);
-            }
+          
         }
 
         private void leftBtn_Click(object sender, EventArgs e)
@@ -202,10 +193,7 @@ namespace ControlNew
             List<string> commandsList = new List<string>();
             commandsList.Add("#3#1300\n");
             commandsList.Add("#3#1500\n");
-            if (DroneHelper.IsConnected)
-            {
-                DroneHelper.WriteCommand(commandsList);
-            }
+           
         }
 
         //throutle value
@@ -217,10 +205,7 @@ namespace ControlNew
 
             }
             
-            if (DroneHelper.IsConnected)
-            {
-                DroneHelper.WriteCommand("#0#" + thrSlider.Value + "\n");
-            }
+           
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -249,10 +234,7 @@ namespace ControlNew
             {
                 
                 armButton.Content = "DISARM Motors";
-                if (DroneHelper.IsConnected)
-                {
-                //    DroneHelper.WriteCommand("#4#1900\n");
-                }
+               
                 
                 if (port != null && port.IsOpen)
                     port.Write("41900");//update all 
