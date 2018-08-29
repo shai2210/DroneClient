@@ -42,9 +42,7 @@ namespace ControlNew
         {
             InitializeComponent();
             ResizeMode = ResizeMode.NoResize;//disable sizing options
-            OperationManager.Init();
-            //gives OperationManager accses to main window
-          //  OperationManager.SetMainWindow(this);
+            
            // s3 = new BackgroundWorker();
            // changeWorker = new BackgroundWorker();
 
@@ -275,7 +273,8 @@ namespace ControlNew
             var periodTimeSpan = TimeSpan.FromSeconds(5);
 
             //changeWorker.RunWorkerAsync();
-            OperationManager.HandleDroneData(null);
+          
+           
             
 
         }
@@ -307,6 +306,14 @@ namespace ControlNew
                 photo++;
             });
           
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OperationManager.Init();
+            //gives OperationManager accses to main window
+            OperationManager.SetMainWindow(this);
+            OperationManager.HandleDroneData(null);
         }
     }
 }

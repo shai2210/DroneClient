@@ -6,24 +6,24 @@
         xmlns:local="clr-namespace:ControlNew"
         mc:Ignorable="d"
         Title="Pilot" Height="768" Width="1024">
-	<Grid Background="LightSteelBlue">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="73*"/>
-			<ColumnDefinition Width="944*"/>
-		</Grid.ColumnDefinitions>
-		<Button Content="Forward" Margin="57.5,41,736,651" Click="forBtn_Click" Grid.Column="1"   Background="WhiteSmoke" BorderBrush="Black"/>
-		<Button Content="Left" Margin="27,102,839,590" Click="leftBtn_Click" Grid.ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Black"/>
-		<Button Content="Right" Margin="158.5,103,633,589" Click="rightBtn_Click" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Background="WhiteSmoke" BorderBrush="Black"/>
-		<Button Content="Backward" Margin="57.5,165,736,527" Click="backBtn_Click" Grid.Column="1" Background="WhiteSmoke" BorderBrush="Black"  />
-		<ComboBox Name="comboBox1" Margin="196.5,344,571,361" Grid.Column="1"/>
-		<Button Name="ConnectBtn" Content="Connect" Margin="44,344,788,361" Click="checkBox1_CheckedChanged" Grid.ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Black"/>
-		<Button Content="Refresh COMs" Margin="44,393,788,313" Click="refreshBtn_Click" Grid.ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Black"/>
-		<Button Name="armButton" Content="Arm Motors" Click="armButton_CheckedChanged" Margin="44,443,788,262" Grid.ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Black"/>
-		<TextBox Text="Throttle" TextAlignment="Center" FontSize="16" Margin="49,268,744,439" Grid.Column="1" BorderThickness="1" Background="WhiteSmoke" BorderBrush="Black"/>
-		<Slider Name="thrSlider" Minimum="1000" Maximum="2000" ValueChanged="thrBar_Scroll" HorizontalAlignment="Left" Height="40" Width="300" Margin="49,0,0,457" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"></Slider>
-		<WebBrowser Margin="447,10,0,0" Name="Gmaps" HorizontalAlignment="Left" Height="366"  VerticalAlignment="Top" Width="454" Grid.Column="1" />
-		<Image Name="CurrentImage"   Width="454" Height="300" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,44" Source="/images/iii.jpg" Grid.Column="1"></Image>
-		<DocumentViewer HorizontalAlignment="Left" Margin="1256.5,693,-413,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
-		<Label Name="uploadLbl" Content="" HorizontalAlignment="Left" Margin="467.5,701,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-	</Grid>
+    <Grid Background="LightSteelBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="944*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Forward" Margin="57.5,41,736,651" Click="forBtn_Click" Grid.Column="1"   Background="WhiteSmoke" BorderBrush="Black"/>
+        <Button Content="Left" Margin="27,102,839,590" Click="leftBtn_Click" Grid.ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Black"/>
+        <Button Content="Right" Margin="158.5,103,633,589" Click="rightBtn_Click" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Background="WhiteSmoke" BorderBrush="Black"/>
+        <Button Content="Backward" Margin="57.5,165,736,527" Click="backBtn_Click" Grid.Column="1" Background="WhiteSmoke" BorderBrush="Black"  />
+        <ComboBox Name="comboBox1" Margin="196.5,344,571,361" Grid.Column="1"/>
+        <Button Content="simulation" HorizontalAlignment="Left" Margin="44,660,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="179" Height="33" Click="Button_Click" Background="WhiteSmoke" BorderBrush="Black"/>
+        <Button Name="ConnectBtn" Content="Connect" Margin="44,344,788,361" Click="checkBox1_CheckedChanged" Grid.ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Black"/>
+        <Button Content="Refresh COMs" Margin="44,393,788,313" Click="refreshBtn_Click" Grid.ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Black"/>
+        <Button Name="armButton" Content="Arm Motors" Click="armButton_CheckedChanged" Margin="44,443,788,262" Grid.ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Black"/>
+        <TextBox Text="Throttle" TextAlignment="Center" FontSize="16" Margin="49,268,744,439" Grid.Column="1" BorderThickness="1" Background="WhiteSmoke" BorderBrush="Black"/>
+        <Slider Name="thrSlider" Minimum="1000" Maximum="2000" ValueChanged="thrBar_Scroll" HorizontalAlignment="Left" Height="40" Width="300" Margin="49,0,0,457" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"></Slider>
+        <WebBrowser Margin="447,10,0,0" Name="Gmaps" HorizontalAlignment="Left" Height="366"  VerticalAlignment="Top" Width="454" Grid.Column="1" />
+        <Image Name="CurrentImage"   Width="454" Height="300" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,44" Source="/images/iii.jpg" Grid.Column="1"></Image>
+        <Label Name="uploadLbl" Content="" HorizontalAlignment="Left" Margin="467.5,701,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+    </Grid>
 </Window>
