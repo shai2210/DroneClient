@@ -38,16 +38,20 @@ namespace ControlNew
         BackgroundWorker changeWorker;
         string readFromStream;
         dataFromDrone data = new dataFromDrone();
+     //   static Timer readingTimer = new Timer(ReadingTimer_Tick); //timer to read data from arduino
+
         public MainWindow()
         {
             InitializeComponent();
             ResizeMode = ResizeMode.NoResize;//disable sizing options
-            
+            DroneManager.SetMainWindow(this);
+
            // s3 = new BackgroundWorker();
            // changeWorker = new BackgroundWorker();
 
             //gives promition to HTML/pilot
             string curdir = Directory.GetCurrentDirectory();
+
             Gmaps.Navigate(String.Format("file:///{0}/HTML/pilot.html", curdir));
 
             
@@ -119,14 +123,17 @@ namespace ControlNew
 
         }
 
+       
+
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
             string inData = sp.ReadExisting();
             DroneManager.GetInstance().DataReceived(inData);
-
+            
 
         }
+        
 
         private void connectToArduino()
         {
@@ -163,12 +170,15 @@ namespace ControlNew
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            Package package = new Package(2, (byte)Opcode.MOVE_REQUEST, "21300");
-            port.Write(package.ToString());
+            if (port != null && port.IsOpen)
+            {
+                Package package = new Package(2, (byte)Opcode.MOVE_REQUEST, "21300");
+                port.Write(package.ToString());
 
-            Thread.Sleep(100);
-            Package package1 = new Package(2, (byte)Opcode.MOVE_REQUEST, "21500");
-            port.Write(package1.ToString());
+                Thread.Sleep(100);
+                Package package1 = new Package(2, (byte)Opcode.MOVE_REQUEST, "21500");
+                port.Write(package1.ToString());
+            }
             
             //List<Package> commandsList = new List<Package>();
             //commandsList.Add(package);
@@ -227,6 +237,7 @@ namespace ControlNew
             isConnected = !isConnected;
             if (isConnected)
             {
+
                 string selectedPort = comboBox1.SelectedItem.ToString();
                 connectToArduino();
                 ConnectBtn.Content = "Disconnect";
@@ -286,17 +297,20 @@ namespace ControlNew
             //invoke the main window thread 
             Dispatcher.Invoke(() =>
             {
-                photo++;
-                CurrentImage.Source = new BitmapImage(new Uri("../images/n" + photo + ".png", UriKind.Relative));
- 
                 dynamic doc = Gmaps.Document;
                 Gmaps.InvokeScript("drawRoute", new Object[] { lat, lng, time.ToString(),url });
             });
         }
 
-        //get image and change image at pilot screen
-        //public void SetNewImage(ImageSource img)
-        public void SetNewImage()
+
+        /*
+         *this is the simulation section 
+         * it will send hard coded data to aerver SQL and s3
+         * you can check it and to see it realy works
+         */
+
+        //get image from images folder and change image at pilot screen in simulation mode
+        public void SetNewImageSim()
         {
             photo++;
           
@@ -308,10 +322,10 @@ namespace ControlNew
           
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        //starting simulation mode
+        private void sim_btn(object sender, RoutedEventArgs e)
         {
             OperationManager.Init();
-            //gives OperationManager accses to main window
             OperationManager.SetMainWindow(this);
             OperationManager.HandleDroneData(null);
         }

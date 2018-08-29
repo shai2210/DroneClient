@@ -19,6 +19,11 @@ namespace ControlNew.Drone
         private Hashtable partialMessages;
         private static MainWindow _mainWindow;
 
+        public static void SetMainWindow(MainWindow window)
+        {
+            _mainWindow = window;
+        }
+
         private DroneManager()
         {
             processedPackageSet = new HashSet<Package>();
