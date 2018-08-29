@@ -44,7 +44,7 @@ namespace ControlNew
             ResizeMode = ResizeMode.NoResize;//disable sizing options
             OperationManager.Init();
             //gives OperationManager accses to main window
-            OperationManager.SetMainWindow(this);
+          //  OperationManager.SetMainWindow(this);
            // s3 = new BackgroundWorker();
            // changeWorker = new BackgroundWorker();
 
