@@ -14,8 +14,8 @@ namespace ControlNew.Network
         private static S3Handler Instance;
         private const string bucketName = "drones-bucket2";
         private  string keyName = "";//the file name on S3 
-        private const string filePath = @"C:\Users\shai\Desktop\New folder\"; // ""SET REAL FILE PATH
-
+        private const string filePath = @"C:\Users\shai\Desktop\New folder\"; // simulation path
+    
         
         /////////// S3 Info
         private static readonly RegionEndpoint bucketRegion = RegionEndpoint.EUWest1;

@@ -30,15 +30,10 @@ namespace ControlNew
     public partial class MainWindow : Window
     {
         //   private static readonly HttpClient client = new HttpClient();
-        int photo;//for presntation
+        int photo = 0;//for simulation
         private SerialPort port;
         bool armBtnChecked = false;
         bool isConnected = false;
-        BackgroundWorker s3;
-        BackgroundWorker changeWorker;
-        string readFromStream;
-        dataFromDrone data = new dataFromDrone();
-     //   static Timer readingTimer = new Timer(ReadingTimer_Tick); //timer to read data from arduino
 
         public MainWindow()
         {
@@ -46,64 +41,14 @@ namespace ControlNew
             ResizeMode = ResizeMode.NoResize;//disable sizing options
             DroneManager.SetMainWindow(this);
 
-           // s3 = new BackgroundWorker();
-           // changeWorker = new BackgroundWorker();
-
             //gives promition to HTML/pilot
             string curdir = Directory.GetCurrentDirectory();
 
             Gmaps.Navigate(String.Format("file:///{0}/HTML/pilot.html", curdir));
 
-            
+
             refreshCom();
-
-            //s3 upload start worker
-     //       s3.DoWork += s3_DoWork;
-       //     s3.RunWorkerCompleted += s3_RunWorkerCompleted;
-
-            //get info start worker
-         //   changeWorker.DoWork += changeWorker_DoWork;
-           // changeWorker.RunWorkerCompleted += changeWorker_RunWorkerCompleted;   
         }
-        ////data have been accepted parse data send to s3 change pic send to sever 
-        //private void changeWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    DateTime thisDate1 = new DateTime(2011, 6, 10);
-
-        //    //readFromStream = (string)e.Result;
-
-        //    //parse info and call setters 
-        //    data.DroneID = 9;
-           
-        //    //change pic + update route
-        //    myRoute(13, 18 ,thisDate1);
-        //    myRoute(13, 19, thisDate1);
-
-        //    //upload to s3 will get pic to send will return true sucess or false fail
-        //    s3.RunWorkerAsync();
-        //   // NetworkHandler.UploadImageToS3("IMG_0001.jpg");
-        //    //post to server will return true sucess or false fail
-        //}
-
-        ////reads data from arduino
-        //private void changeWorker_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //        //e.Result = port.ReadExisting();
-        //}
-
-        ////upload to s3
-        //private void s3_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    //pic saved on s3
-            
-        //    uploadLbl.Content = "uploaded";
-
-        //}
-
-        //private void s3_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    NetworkHandler.UploadImageToS3("IMG_0001.jpg");
-        //}
 
         //get coms atteched to the computer
         private void refreshCom(){
@@ -283,11 +228,6 @@ namespace ControlNew
             var startTimeSpan = TimeSpan.Zero;
             var periodTimeSpan = TimeSpan.FromSeconds(5);
 
-            //changeWorker.RunWorkerAsync();
-          
-           
-            
-
         }
 
         //get lat long ant time and display it on map
@@ -302,12 +242,32 @@ namespace ControlNew
             });
         }
 
+        //changes pic 
+        public void SetNewImage(BitmapImage pic)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                CurrentImage.Source = pic;
+              
+            });
+
+        }
+
 
         /*
          *this is the simulation section 
          * it will send hard coded data to aerver SQL and s3
          * you can check it and to see it realy works
          */
+
+        //starting simulation mode
+        private void sim_btn(object sender, RoutedEventArgs e)
+        {
+            OperationManager.Init();
+            OperationManager.SetMainWindow(this);
+            OperationManager.HandleDroneData(null);
+            
+        }
 
         //get image from images folder and change image at pilot screen in simulation mode
         public void SetNewImageSim()
@@ -322,12 +282,11 @@ namespace ControlNew
           
         }
 
-        //starting simulation mode
-        private void sim_btn(object sender, RoutedEventArgs e)
+        public void showLabel()
         {
-            OperationManager.Init();
-            OperationManager.SetMainWindow(this);
-            OperationManager.HandleDroneData(null);
-        }
+            simLabel.Visibility = Visibility.Visible;
+        } 
+
+       
     }
 }

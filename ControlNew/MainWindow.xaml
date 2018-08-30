@@ -25,5 +25,6 @@
         <WebBrowser Margin="447,10,0,0" Name="Gmaps" HorizontalAlignment="Left" Height="366"  VerticalAlignment="Top" Width="454" Grid.Column="1" />
         <Image Name="CurrentImage"   Width="454" Height="300" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,44" Source="/images/iii.jpg" Grid.Column="1"></Image>
         <Label Name="uploadLbl" Content="" HorizontalAlignment="Left" Margin="467.5,701,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Name="simLabel" Visibility="Hidden" Content="simulation complete" Grid.Column="1" HorizontalAlignment="Left" Margin="0,625,0,0" VerticalAlignment="Top" Height="30" Width="118"/>
     </Grid>
 </Window>
